@@ -1,0 +1,87 @@
+@model IEnumerable<WebAtividadeEntrevista.Models.BeneficiarioModel>
+
+<div class="modal fade" id="beneficiariosModal" tabindex="-1" role="dialog" method="post" aria-labelledby="beneficiariosModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="beneficiariosModalLabel">Beneficiários do Cliente</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form></form>
+                <form id="formAddBeneficiario" class="info-beneficiario">
+                    <input type="hidden" id="idCliente" />
+                    <input type="hidden" id="idBeneficiario" />
+                    <div class="form-row">
+                        <div class="col-md-4 campo-cpf-beneficiario">
+                            <label for="cpfBeneficiario">CPF:</label>
+                            <input type="text" id="cpfBeneficiario" class="form-control" placeholder="Ex.: 010.011.111-00" required>
+                        </div>
+                        <div class="col-md-5 campo-nome-beneficiario">
+                            <label for="nomeBeneficiario">Nome:</label>
+                            <input type="text" id="nomeBeneficiario" class="form-control" placeholder="Ex.: Maria" required>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="">&nbsp;</label>
+                            <button type="button" id="btnAddBeneficiario" class="btn btn-success btn-block mt-2">Incluir</button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Conteúdo dinâmico da lista de beneficiários -->
+                @if (Model != null && Model.Any())
+                {
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">CPF</th>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="beneficiariosListagem">
+                            @foreach (var beneficiario in Model)
+                            {
+                                <tr>
+                                    <td class="listagem-cpf-beneficiario">@beneficiario.CPF</td>
+                                    <td class="listagem-nome-beneficiario">@beneficiario.Nome</td>
+                                    <td>
+                                        <input type="hidden" id="idBeneficiarioLista" value="@beneficiario.Id" />
+                                        <button class="btn btn-primary btn-sm" type="button" onclick="editarBeneficiario('@beneficiario.Id', '@beneficiario.Nome', '@beneficiario.CPF')">
+                                            Alterar
+                                        </button>
+                                        <button type="button" class="btn btn-primary btn-sm ml-1" onclick="excluirBeneficiario('@beneficiario.Id')">
+                                            Excluir
+                                        </button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">CPF</th>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="beneficiariosListagem">
+                        </tbody>
+                    </table>
+                }
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+<script type="text/javascript" src="~/Scripts/Beneficiarios/FI.Beneficiarios.js" charset="utf-8"></script>

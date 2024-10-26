@@ -1,0 +1,21 @@
+.listagem-cpf-beneficiario {
+    width: 30%;
+}
+
+.listagem-nome-beneficiario {
+    width: 44%;
+}
+
+.campo-cpf-beneficiario {
+    padding-left: 0px;
+    padding-right: 9px;
+}
+
+.campo-nome-beneficiario {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.info-beneficiario{
+    padding-bottom:17%;
+}
