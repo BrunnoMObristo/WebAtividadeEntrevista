@@ -61,7 +61,7 @@ function AplicarMascaraCPF() {
     });
 }
 
-$('#beneficiariosModal').on('show.bs.modal', function () {
+$('#beneficiariosModal').on('show.bs.modal', function () {  
     AplicarMascaraCPF();
 });
 

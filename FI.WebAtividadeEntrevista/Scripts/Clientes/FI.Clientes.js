@@ -1,7 +1,17 @@
 ﻿
 $(document).ready(function () {
     $('#formCadastro #CPF').mask('000.000.000-00');
-    
+
+    //Brunno Martyres Obristo:
+    //Há duas aproximações nesse caso:
+    //1 - O usuário quer adicionar os beneficiários logo após incluir o cliente, então o formulário deveria manter todos os dados carregados (inclusive o ID gerado).
+    //2 - O usuário quer adicionar mais clientes logo após o primeiro cadastro, então o formulário deve ser limpo para o novo cadastro.
+    //As duas fazem sentido, mas utilizei a segunda aproximação, pois faz mais sentido para mim, dessa forma, os beneficiários 
+    //podem ser cadastrados ao entrar na tela de alteração do cliente.
+    if (acao == 'Incluir') {
+        $('#abrirBeneficiarios').hide()
+    }
+
     $('#formCadastro').submit(function (e) {
         
         // Validação do CPF
