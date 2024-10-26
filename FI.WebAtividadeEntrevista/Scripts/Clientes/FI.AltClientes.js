@@ -1,6 +1,6 @@
 ﻿
 $(document).ready(function () {
-    $('#formCadastro #CPF').mask('000.000.000-00');    
+    $('#formCadastro #CPF').mask('000.000.000-00');
 
     if (obj) {
         $('#formCadastro #Nome').val(obj.Nome);
@@ -12,7 +12,7 @@ $(document).ready(function () {
         $('#formCadastro #Cidade').val(obj.Cidade);
         $('#formCadastro #Logradouro').val(obj.Logradouro);
         $('#formCadastro #Telefone').val(obj.Telefone);
-        $('#formCadastro #CPF').val(obj.CPF);
+        $('#formCadastro #CPF').val(formatarCPF(obj.CPF));
     }
 
     $('#formCadastro').submit(function (e) {
@@ -38,25 +38,31 @@ $(document).ready(function () {
                 "Cidade": $(this).find("#Cidade").val(),
                 "Logradouro": $(this).find("#Logradouro").val(),
                 "Telefone": $(this).find("#Telefone").val(),
-                "CPF": $(this).find("#CPF").val()
+                "CPF": $(this).find("#CPF").val().replace(/[\.,-]/g, '')
             },
             error:
-            function (r) {
-                if (r.status == 400)
-                    ModalDialog("Ocorreu um erro", r.responseJSON);
-                else if (r.status == 500)
-                    ModalDialog("Ocorreu um erro", "Ocorreu um erro interno no servidor.");
-            },
+                function (r) {
+                    if (r.status == 400)
+                        ModalDialog("Ocorreu um erro", r.responseJSON);
+                    else if (r.status == 500)
+                        ModalDialog("Ocorreu um erro", "Ocorreu um erro interno no servidor.");
+                },
             success:
-            function (r) {
-                ModalDialog("Sucesso!", r)
-                $("#formCadastro")[0].reset();                                
-                window.location.href = urlRetorno;
-            }
+                function (r) {
+                    ModalDialog("Sucesso!", r)
+                    $("#formCadastro")[0].reset();
+                    window.location.href = urlRetorno;
+                }
         });
     })
-    
-})
+
+});
+
+function formatarCPF(cpf) {
+    return cpf.replace(/(\d{3})(\d)/, '$1.$2')
+        .replace(/(\d{3})(\d)/, '$1.$2')
+        .replace(/(\d{3})(\d{2})$/, '$1-$2');
+}
 
 function ModalDialog(titulo, texto) {
     var random = Math.random().toString().replace('.', '');
