@@ -38,6 +38,12 @@ namespace WebAtividadeEntrevista.Controllers
             }
             else
             {
+
+                //Brunno Martyres Obristo: 
+                //Pensei na possibilidade de deixar o CPF como campo bloqueado ao tentar alterar
+                //para evitar a troca do CPF para algum já registrado, mas como pode haver o caso
+                //do CPF ter sido digitado errado, permiti a alteração de CPFs normalmente.
+
                 var cpfJaRegistrado = false;
                
                 cpfJaRegistrado = bo.VerificarExistencia(model.Id, model.CPF);                
