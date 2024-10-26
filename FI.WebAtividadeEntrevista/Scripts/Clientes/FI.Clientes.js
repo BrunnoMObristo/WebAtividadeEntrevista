@@ -3,7 +3,7 @@ $(document).ready(function () {
     $('#formCadastro #CPF').mask('000.000.000-00');
     
     $('#formCadastro').submit(function (e) {
-        debugger
+        
         // Validação do CPF
         if (!validarCPF($('#formCadastro #CPF').val())) {
             ModalDialog("Erro!", "O CPF fornecido está inválido.");

@@ -1,7 +1,6 @@
 $(document).ready(function () {    
 
-    $('#cpfBeneficiario').mask('000.000.000-00');
-    debugger
+    $('#cpfBeneficiario').mask('000.000.000-00');    
 
     $('#btnAddBeneficiario').on("click", function (e) {
 
@@ -11,7 +10,7 @@ $(document).ready(function () {
         const idCliente = $('#idCliente').val();
 
         if (!validarCPF(cpfBeneficiario)) {
-            debugger
+            
             ModalDialog("Erro!", "O CPF fornecido esta invalido.");
             e.preventDefault();
             return; 
@@ -29,8 +28,7 @@ $(document).ready(function () {
                 "IdCliente": idCliente
             },
             success: function (r) {                
-                debugger
-
+                
                 ModalDialog("Sucesso!", r.message);
                 var newTBody = $(r.htmlTabela).find('tbody').html();
                 $('#beneficiariosListagem').html(newTBody); // Atualiza a tabela com o HTML recebido
@@ -56,8 +54,7 @@ function formatarCPF(cpf) {
         .replace(/(\d{3})(\d{2})$/, '$1-$2');
 }
 
-function AplicarMascaraCPF() {
-    debugger
+function AplicarMascaraCPF() {    
     $('.listagem-cpf-beneficiario').each(function () {
         var cpf = $(this).text(); // Pega o texto do elemento
         $(this).text(formatarCPF(cpf)); // Aplica a formatação e atualiza o texto
@@ -84,7 +81,7 @@ function excluirBeneficiario(idBeneficiario) {
         },
         success: function (r) {
             ModalDialog("Sucesso!", r.message);
-            debugger
+            
             if (r.excluirBeneficiario == true) {
                 $('#beneficiariosListagem tr').find('input[value="' + idBeneficiario + '"]').closest('tr').remove()
             }
