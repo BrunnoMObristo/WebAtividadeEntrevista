@@ -52,6 +52,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DAL\BackupScripts\ListaScripts.txt" />
     <Content Include="DAL\Beneficiarios\Procedures\FI_SP_AltBenef.sql" />
     <Content Include="DAL\Beneficiarios\Procedures\FI_SP_DelBeneficiario.sql" />
     <Content Include="DAL\Beneficiarios\Procedures\FI_SP_IncAltBeneficiario.sql" />
