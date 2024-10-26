@@ -12,7 +12,7 @@ $(document).ready(function () {
         }
 
         // Se o CPF for válido, continue com o envio do formulário
-        e.preventDefault(); // Impede o envio padrão
+        e.preventDefault(); // Impede o comportamento padrão
         $.ajax({
             url: urlPost,
             method: "POST",

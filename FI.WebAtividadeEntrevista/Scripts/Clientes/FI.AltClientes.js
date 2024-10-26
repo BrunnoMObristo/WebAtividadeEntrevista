@@ -90,7 +90,7 @@ function ModalDialog(titulo, texto) {
 
 $("#abrirBeneficiarios").on("click",function () {
     $.ajax({
-        url: urlAbrirBeneficiario, // Substitua pelo nome correto do controlador
+        url: urlAbrirBeneficiario, // Substitua pelo nome correto do controller
         type: 'GET',
         data: { idCliente: obj.Id},
         success: function (data) {
